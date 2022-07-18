@@ -1,6 +1,6 @@
-# Gratis-Digital-paddle-frontend-assessment
+# ELC-paddle-frontend-assessment
 
-This is my solution of a timed frontend assessment test organized by Gratis Digital.
+This is my solution of a timed frontend assessment test organized by ELC.
 
 The libraries used in this pro are
 
@@ -15,5 +15,4 @@ I would lve to improve on the user interaction in a way that mmakes users enjoy 
 [Live Site Here](https://elc-frontend-task.netlify.app/)
 
 To create a production build version, do "npm run build".
-
 
