@@ -1,13 +1,17 @@
+import { differenceInDays } from "date-fns";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 
-const RepoComponent = () => {
+import { numberToKFormatter } from "../../utils/helpers";
+
+const RepoComponent = ({ repo }) => {
+	console.log(repo.created_at);
 	return (
 		<Paper sx={{ p: "0.5rem", mb: "1rem", display: "flex" }} elevation={1}>
 			<Box sx={{ height: "100%", width: "5.5rem", mr: "1rem" }}>
 				<img
-					src="https://picsum.photos/200"
+					src={repo?.owner?.avatar_url}
 					alt="task"
 					height="100%"
 					width="100%"
@@ -21,14 +25,14 @@ const RepoComponent = () => {
 					gutterBottom
 					sx={{ textTransform: "capitalize", fontWeight: "bold" }}
 				>
-					tensoflow
+					{repo.name}
 				</Typography>
 				<Typography
-					variant="body1"
+					variant="body2"
 					gutterBottom
 					sx={{ textTransform: "capitalize" }}
 				>
-					an open source machine learning platform for tensorflow.org
+					{repo.description}
 				</Typography>
 				<Box sx={{ display: "flex" }}>
 					<Typography
@@ -36,17 +40,20 @@ const RepoComponent = () => {
 						gutterBottom
 						sx={{ border: "1px solid #000", p: "0.2rem", mr: "0.5rem" }}
 					>
-						Stars: 118k
+						{`Stars: ${numberToKFormatter(repo.stargazers_count)}`}
 					</Typography>
 					<Typography
 						variant="body1"
 						gutterBottom
 						sx={{ border: "1px solid #000", p: "0.2rem", mr: "0.5rem" }}
 					>
-						Issues: 118k
+						{`Issues: ${numberToKFormatter(repo.open_issues_count)}`}
 					</Typography>
 					<Typography variant="body1" gutterBottom>
-						Submitted 30 days ago
+						{`Submitted ${differenceInDays(
+							new Date(),
+							new Date(repo.created_at)
+						)} days ago by ${repo?.owner?.login}`}
 					</Typography>
 				</Box>
 			</Box>

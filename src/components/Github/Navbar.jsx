@@ -53,7 +53,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 	},
 }));
 
-export default function SearchAppBar() {
+export default function SearchAppBar({ page, setPage }) {
 	return (
 		<Box sx={{ flexGrow: 1 }}>
 			<AppBar position="static">
@@ -65,6 +65,8 @@ export default function SearchAppBar() {
 							color="inherit"
 							aria-label="open drawer"
 							sx={{ p: 1 }}
+							disabled={page === 1}
+							onClick={() => setPage(page - 1)}
 						>
 							<ArrowLeftOutlinedIcon />
 						</IconButton>
@@ -74,6 +76,7 @@ export default function SearchAppBar() {
 							color="inherit"
 							aria-label="open drawer"
 							sx={{ p: 1 }}
+							onClick={() => setPage(page + 1)}
 						>
 							<ArrowRightOutlinedIcon />
 						</IconButton>
@@ -95,7 +98,7 @@ export default function SearchAppBar() {
 							<SearchIcon />
 						</SearchIconWrapper>
 						<StyledInputBase
-							placeholder="Search…"
+							placeholder="Search Repos"
 							inputProps={{ "aria-label": "search" }}
 						/>
 					</Search>
