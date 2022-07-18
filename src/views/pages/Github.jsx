@@ -71,8 +71,6 @@ const Github = () => {
 		};
 	}, [page]);
 
-	console.log({ searchTerm });
-
 	return (
 		<div>
 			<Navbar
