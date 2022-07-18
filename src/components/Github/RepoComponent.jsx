@@ -6,7 +6,6 @@ import Typography from "@mui/material/Typography";
 import { numberToKFormatter } from "../../utils/helpers";
 
 const RepoComponent = ({ repo }) => {
-	console.log(repo.created_at);
 	return (
 		<Paper sx={{ p: "0.5rem", mb: "1rem", display: "flex" }} elevation={1}>
 			<Box sx={{ height: "100%", width: "5.5rem", mr: "1rem" }}>

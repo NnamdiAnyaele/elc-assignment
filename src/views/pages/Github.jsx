@@ -18,6 +18,26 @@ const Github = () => {
 	const [page, setPage] = useState(1);
 	const [repos, setRepos] = useState([]);
 	const [loading, setLoading] = useState(false);
+	const [searchTerm, setSearchTerm] = useState("");
+	const [displayedRepos, setDisplayedRepos] = useState([]);
+
+	useEffect(() => {
+		if (repos.length) {
+			let filtered = [...repos];
+			if (searchTerm) {
+				filtered = filtered.filter((item) => {
+					return item.name?.toLowerCase().includes(searchTerm.toLowerCase());
+				});
+			}
+			setDisplayedRepos(filtered);
+		}
+	}, [searchTerm, repos]);
+
+	useEffect(() => {
+		if (!loading && repos.length) {
+			setDisplayedRepos(repos);
+		}
+	}, [repos, loading]);
 
 	useEffect(() => {
 		let isMounted = true;
@@ -51,9 +71,16 @@ const Github = () => {
 		};
 	}, [page]);
 
+	console.log({ searchTerm });
+
 	return (
 		<div>
-			<Navbar page={page} setPage={setPage} />
+			<Navbar
+				page={page}
+				setPage={setPage}
+				searchTerm={searchTerm}
+				setSearchTerm={setSearchTerm}
+			/>
 			<Box
 				sx={{ p: { xs: "1rem" }, display: "flex", justifyContent: "center" }}
 			>
@@ -75,7 +102,7 @@ const Github = () => {
 						<Typography variant="body1" gutterBottom align="right">
 							Current Page: {page}
 						</Typography>
-						{repos.map((item) => (
+						{displayedRepos.map((item) => (
 							<Box key={item.id}>
 								<RepoComponents repo={item} />
 							</Box>
