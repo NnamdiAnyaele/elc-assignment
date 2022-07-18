@@ -5,7 +5,7 @@ import TextField from "@mui/material/TextField";
 import InputBase from "@mui/material/InputBase";
 import Button from "@mui/material/Button";
 
-const Search = styled("div")(({ theme }) => ({
+const Email = styled("div")(({ theme }) => ({
 	position: "relative",
 	borderRadius: "1.6rem",
 	backgroundColor: "#FAFAFA",
@@ -97,7 +97,7 @@ const WaitListForm = () => {
 				</Grid>
 			</Box>
 
-			<Search>
+			<Email>
 				<StyledInputBase
 					placeholder="Enter your email address…"
 					inputProps={{ "aria-label": "email" }}
@@ -117,7 +117,7 @@ const WaitListForm = () => {
 				>
 					join our waiting list
 				</Button>
-			</Search>
+			</Email>
 		</Box>
 	);
 };
